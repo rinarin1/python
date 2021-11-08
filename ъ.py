@@ -9,5 +9,5 @@ for step in range(1, k+1):
     pg.hotkey('ctrl', 's')
     t.sleep(2)
     pg.click(322, 432)
-    pg.write(step)
+    pg.write(str(step))
     pg.press('enter')
