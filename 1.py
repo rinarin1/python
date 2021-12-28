@@ -1,9 +1,19 @@
-import pyautogui
-pyautogui.click(1220, 750)
-pyautogui.click(1219, 672)
-pyautogui.click(100, 740)
-pyautogui.hotkey('ctrl', 't')
-pyautogui.click (161, 49)
-pyautogui.write('vk.com')
-pyautogui.press('enter')
-
+import pyautogui as pg
+import time as t
+pg.hotkey('win', 'd')
+pg.hotkey ('ctrl', 'alt', 'm')
+t.sleep(5)
+pg.hotkey('ctrl', 't')
+t.sleep(1)
+pg.write('youtube.com')
+pg.press('enter')
+t.sleep(5)
+pg.click(349, 93)
+t.sleep(3)
+pg.write('Cyt;yfz Rjhjktdf (2012) / Vekmnabkmv')
+t.sleep(3)
+pg.press('enter')
+t.sleep(0.5)
+pg.click(323, 516)
+t.sleep(10)
+pg.press('f')
