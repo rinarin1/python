@@ -12,10 +12,6 @@ pole=[['О', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
       ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*']]
 ox=0
 oy=0
-for stroka in pole:
-    for kletka in stroka:
-        print(kletka,end='')
-    print()
 def obnovlenije():
     global ox,oy
     x=ox
