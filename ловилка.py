@@ -18,7 +18,7 @@ def proverka():
     global ox,oy
     x=ox
     y=oy
-    if ox<0 or ox>10 or oy<0 or oy>10:
+    if oy<0 or oy>10:
         ox=x
         oy=y
         print('Невозможно пройти.')
@@ -35,30 +35,34 @@ def left():
     proverka()
 def bonuS():
     global ox1, oy1, s
-    if s==1:
-#        pole[oy1][ox1]='¥'
-        pole[oy1][ox1]='*'
-        pole[oy1+1][ox1]='¥'
-        oy1=oy1+1
+    pole[oy1][ox1]='*'
+    pole[oy1+1][ox1]='¥'
+    oy1=oy1+1
     if oy1==10:
         pole[oy1][ox1]='*'
         s=2
+def bonus():
+    global ox1, oy1, s
+    k1=r.randint(0, 10)
+    ox1=k1
+    oy1=0
+    pole[oy1][ox1]='¥'
+    s=3
 def timer():
-    global t1, t2
-    t1=r.randint(2, 10)
-    t2=r.randint(2, 10)
+    global t1, t2, s
     if t1==0:
         s=1
     if t2==0:
         s1=1
 kb.add_hotkey('right', right)
 kb.add_hotkey('left', left)
-k1=r.randint(0, 10)
-ox1=k1
-oy1=0
 s=0
 s1=0
-timer()
+oy1=0
+t1=r.randint(2, 10)
+t2=r.randint(2, 10)
+t1=t1+1
+t2=t2+1
 while True:
     print()
     for stroka in pole:
@@ -66,8 +70,11 @@ while True:
             print(kletka,end='')
         print()
     time.sleep(2)
+    timer()
     t1=t1-1
     t2=t2-1
-    if s==2:
+    if s==1:
+        bonus()
         s=0
-        oy1=0
+    if s==3:
+        bonuS()
