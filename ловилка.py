@@ -73,8 +73,8 @@ while True:
     timer()
     t1=t1-1
     t2=t2-1
-    if s==1:
-       bonus()
+     if s==1:
+        bonus()
        #здесь должен только в первый раз работать s=0, а дальше нет
-    if s==3:
-       bonuS()
+     if s==3:
+        bonuS()
