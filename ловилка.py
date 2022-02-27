@@ -12,27 +12,32 @@ pole=[['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
       ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
       ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
       ['*', '*', '*', '*', '*', 'О', '*', '*', '*', '*', '*']]
-ox=6
+ox1 = 0
+oy1 = 0
+ox2=0
+oy2=0
+ox=5
 oy=10
-def proverka():
-    global ox,oy
-    x=ox
-    y=oy
-    if oy<0 or oy>10:
-        ox=x
-        oy=y
-        print('Невозможно пройти.')
-    pole[oy][ox]='O'
+schet=0
+def proverka(coord_x):
+    if int(coord_x) < 0:
+        return 0
+    elif int(coord_x) > 10:
+        return 10
+    else:
+        return coord_x
 def right():
     global ox,oy
     pole[oy][ox]='*'
     ox=ox+1
-    proverka()
+    ox = proverka(ox)
+    pole[oy][ox]='O'
 def left():
     global ox,oy
     pole[oy][ox]='*'
     ox=ox-1
-    proverka()
+    ox = proverka(ox)
+    pole[oy][ox]='O'
 def bonuS():
     global ox1, oy1, s
     pole[oy1][ox1]='*'
@@ -43,11 +48,16 @@ def bonuS():
         s=2
 def bonus():
     global ox1, oy1, s
-    k1=r.randint(0, 10)
-    ox1=k1
+    ox1=r.randint(0, 10)
     oy1=0
     pole[oy1][ox1]='¥'
     s=3
+def bomba():
+    global ox2, oy2, s1
+    ox2=r.randint(0, 10)
+    oy2=0
+    pole[oy2][ox2]='💣'
+    s1=2
 def timer():
     global t1, t2, s
     if t1==0:
@@ -65,16 +75,27 @@ t1=t1+1
 t2=t2+1
 while True:
     print()
-    for stroka in pole:
-        for kletka in stroka:
+    for i in range(0, 11):
+        for kletka in pole[i]:
             print(kletka,end='')
+        if i == 5:
+            print("       Score:", schet)
+            continue
         print()
     time.sleep(2)
     timer()
     t1=t1-1
     t2=t2-1
-     if s==1:
+    if s==1:
         bonus()
-       #здесь должен только в первый раз работать s=0, а дальше нет
-     if s==3:
+    elif s==3:
         bonuS()
+    if ox1==ox and oy1==oy:
+        pole[oy][ox]='О'
+        schet=schet+1
+        ox1=-1
+        oy1=-1
+        t1=r.randint(2, 10)
+    if s1==1:
+        bomba()
+    elif s1==2:
