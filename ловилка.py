@@ -14,8 +14,8 @@ pole=[['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
       ['*', '*', '*', '*', '*', 'О', '*', '*', '*', '*', '*']]
 ox1 = 0
 oy1 = 0
-ox2=0
-oy2=0
+ox2=-2
+oy2=-2
 ox=5
 oy=10
 schet=0
@@ -39,13 +39,14 @@ def left():
     ox = proverka(ox)
     pole[oy][ox]='O'
 def bonuS():
-    global ox1, oy1, s
+    global ox1, oy1, s, t1
     pole[oy1][ox1]='*'
     pole[oy1+1][ox1]='¥'
     oy1=oy1+1
     if oy1==10:
         pole[oy1][ox1]='*'
         s=2
+        t1=r.randint(2, 10)
 def bonus():
     global ox1, oy1, s
     ox1=r.randint(0, 10)
@@ -57,9 +58,18 @@ def bomba():
     ox2=r.randint(0, 10)
     oy2=0
     pole[oy2][ox2]='💣'
-    s1=2
+    s1=3
+def bomBa():
+    global ox2, oy2, s1, t2
+    pole[oy2][ox2]='*'
+    pole[oy2+1][ox2]='💣'
+    oy2=oy2+1
+    if oy2==10:
+        pole[oy2][ox2]='*'
+        s1=2
+        t2=r.randint(2, 10)
 def timer():
-    global t1, t2, s
+    global t1, t2, s, s1
     if t1==0:
         s=1
     if t2==0:
@@ -68,7 +78,6 @@ kb.add_hotkey('right', right)
 kb.add_hotkey('left', left)
 s=0
 s1=0
-oy1=0
 t1=r.randint(2, 10)
 t2=r.randint(2, 10)
 t1=t1+1
@@ -95,7 +104,16 @@ while True:
         schet=schet+1
         ox1=-1
         oy1=-1
-        t1=r.randint(2, 10)
     if s1==1:
         bomba()
-    elif s1==2:
+    elif s1==3:
+        bomBa()
+    if ox2==ox and oy2==oy:
+        pole[oy][ox]='О'
+        schet=schet-1
+        ox2=-2
+        oy2=-1
+    if ox2==ox1 and oy2==oy1:
+        pole[oy1][ox1]='¥'
+        ox2=r.randint(0, 10)
+        pole[oy2][ox2]='💣'
