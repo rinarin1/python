@@ -11,7 +11,8 @@ pole=[['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
       ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
       ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
       ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
-      ['*', '*', '*', '*', '*', 'О', '*', '*', '*', '*', '*']]
+      ['*', '*', '*', '*', '*', 'О', '*', '*', '*', '*', '*'],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']]
 ox1 = 0
 oy1 = 0
 ox2=-2
@@ -39,14 +40,16 @@ def left():
     ox = proverka(ox)
     pole[oy][ox]='O'
 def bonuS():
-    global ox1, oy1, s, t1
+    global ox1, oy1, s, t1, oy, ox
     pole[oy1][ox1]='*'
     pole[oy1+1][ox1]='¥'
     oy1=oy1+1
-    if oy1==10:
+    if oy1==11:
         pole[oy1][ox1]='*'
         s=2
         t1=r.randint(2, 10)
+        if oy1-1==oy and ox1==ox:
+            pole[oy][ox]='O'
 def bonus():
     global ox1, oy1, s
     ox1=r.randint(0, 10)
@@ -60,14 +63,16 @@ def bomba():
     pole[oy2][ox2]='💣'
     s1=3
 def bomBa():
-    global ox2, oy2, s1, t2
+    global ox2, oy2, s1, t2, oy, ox
     pole[oy2][ox2]='*'
     pole[oy2+1][ox2]='💣'
     oy2=oy2+1
-    if oy2==10:
+    if oy2==11:
         pole[oy2][ox2]='*'
         s1=2
         t2=r.randint(2, 10)
+        if oy2-1==oy and ox2==ox:
+            pole[oy][ox]='O'
 def timer():
     global t1, t2, s, s1
     if t1==0:
@@ -102,8 +107,8 @@ while True:
     if ox1==ox and oy1==oy:
         pole[oy][ox]='О'
         schet=schet+1
-        ox1=-1
-        oy1=-1
+        ox1=0
+        oy1=11
     if s1==1:
         bomba()
     elif s1==3:
@@ -113,6 +118,7 @@ while True:
         schet=schet-1
         ox2=-2
         oy2=-1
+        s1=2
     if ox2==ox1 and oy2==oy1:
         pole[oy1][ox1]='¥'
         ox2=r.randint(0, 10)
