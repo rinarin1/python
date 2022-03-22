@@ -1,5 +1,6 @@
 import pyautogui as pg
 import time
+z=0
 def brauzer():
     v=int(input('кол-во вкладок:'))
     pg.hotkey ('ctrl', 'alt', 'm')
@@ -32,7 +33,7 @@ def delenie():
     delitel=float(input('Введите делитель:'))
     raznost=delimoe/delitel
     print(raznost)
-while True:
+while z!='выход':
     z=input('запрос:').lower()
     if z == 'браузер':
         brauzer()
@@ -50,5 +51,5 @@ while True:
             zvezdochka()
         if d =='/':
             delenie()
-    if z == 'выход':
-        pg.hotkey('alt', 'f4')
+if z == 'выход':
+    pg.hotkey('alt', 'f4')
