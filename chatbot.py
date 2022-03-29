@@ -1,5 +1,6 @@
 import pyautogui as pg
 import time
+import math
 z=0
 def brauzer():
     v=int(input('кол-во вкладок:'))
@@ -33,6 +34,15 @@ def delenie():
     delitel=float(input('Введите делитель:'))
     raznost=delimoe/delitel
     print(raznost)
+def stepen():
+    osnovanie=float(input('Введите основание степени:'))
+    pokazatel=float(input('Введите показатель степени:'))
+    stepen=osnovanie**pokazatel
+    print(stepen)
+def koren():
+    pocazatel=float(input('Введите основание корня:'))
+    koren=math.sqrt(pocazatel)
+    print(koren)
 while z!='выход':
     z=input('запрос:').lower()
     if z == 'браузер':
@@ -41,8 +51,6 @@ while z!='выход':
         notepad()
     if z == 'калькулятор':
         d=input('операция:')
-        while d!='+' and d!='-' and d!='*' and d!='/':
-            d=input('действие:')
         if d == '+':
             plus()
         if d == '-':
@@ -51,5 +59,9 @@ while z!='выход':
             zvezdochka()
         if d =='/':
             delenie()
+        if d == '**':
+            stepen()
+        if d == '^':
+            koren()
 if z == 'выход':
     pg.hotkey('alt', 'f4')
