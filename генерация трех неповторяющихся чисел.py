@@ -1,9 +1,10 @@
 import random
-chislo1=random.randint(0,9)
-chislo2=random.randint(0,9)
-while chislo1==chislo2:
-    chislo2=random.randint(0,9)
-chislo3=random.randint(0,9)
-while chislo1==chislo3 or chislo2==chislo3:
-    chislo3=random.randint(0,9)
-print(chislo1, chislo2,chislo3)
+zivra1=random.randint(0,9)
+zivra2=random.randint(0,9)
+while zivra1==zivra2:
+    zivra2=random.randint(0,9)
+zivra3=random.randint(0,9)
+while zivra1==zivra3 or zivra2==zivra3:
+    zivra3=random.randint(0,9)
+chislo=str(zivra1)+str(zivra2)+str(zivra3)
+print(chislo)
