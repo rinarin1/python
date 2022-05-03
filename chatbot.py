@@ -63,5 +63,5 @@ while z!='выход':
             stepen()
         if d == '^':
             koren()
-if z == 'выход':
-    pg.hotkey('alt', 'f4')
+    if z == 'выход':
+        break
