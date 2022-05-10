@@ -20,14 +20,16 @@ def goryacho(ch1, ch2):
         else:
             p=p+1
     return result
-zivra1=random.randint(0,9)
-zivra2=random.randint(0,9)
-while zivra1==zivra2:
-    zivra2=random.randint(0,9)
-zivra3=random.randint(0,9)
-while zivra1==zivra3 or zivra2==zivra3:
-    zivra3=random.randint(0,9)
-chislo=str(zivra1)+str(zivra2)+str(zivra3)
+def gen():
+    z1=random.randint(0,9)
+    z2=random.randint(0,9)
+    while z1==z2:
+        z2=random.randint(0,9)
+    z3=random.randint(0,9)
+    while z1==z3 or z2==z3:
+        z3=random.randint(0,9)
+    return str(z1)+str(z2)+str(z3)
+chislo=gen()
 while True:
     chislo1=input('Введите 3-ёх значное число:')
     if pobeda(chislo,chislo1)==True:
