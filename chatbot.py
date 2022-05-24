@@ -1,7 +1,8 @@
-import pyautogui as pg
-import time
-import math
+import pyautogui as pg, time, math, random, keyboard as kb
 z=0
+schet=0
+chislo=0
+c=0
 def brauzer():
     v=int(input('кол-во вкладок:'))
     pg.hotkey ('ctrl', 'alt', 'm')
@@ -43,6 +44,28 @@ def koren():
     pocazatel=float(input('Введите основание корня:'))
     koren=math.sqrt(pocazatel)
     print(koren)
+def gen():
+    z1=random.randint(0,3)
+    z2=random.randint(0,3)
+    z3=random.randint(0,3)
+    return str(z1)+str(z2)+str(z3)
+def proverka(ch):
+    if ch[0]==ch[1] and ch[0]==ch[2]:
+        return True
+    else:
+        return False
+def space():
+    if c==1:
+        global schet, chislo
+        if proverka(chislo)==True:
+            schet=schet+1
+        else:
+            schet=schet-1
+def right():
+    global c
+    c=0
+kb.add_hotkey('space',space)
+kb.add_hotkey('right', right)
 while z!='выход':
     z=input('запрос:').lower()
     if z == 'браузер':
@@ -63,5 +86,12 @@ while z!='выход':
             stepen()
         if d == '^':
             koren()
+    if z=='однорукий бандит':
+        c=1
+        while schet!=10 and c==1:
+            chislo=gen()
+            print(chislo)
+            print("       Score:", schet)
+            time.sleep(1)
     if z == 'выход':
         break
