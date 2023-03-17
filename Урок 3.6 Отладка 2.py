@@ -30,29 +30,21 @@ for stroka in pole:
     print()
 command = input("Введи команду: ")
 while command != "стоп":
-    if command == "пр":
+    if command == "пр" and x < len(pole[0]) - 1:
         pole[y][x] = "O"
         x = x + 1
-        if x > 6 :
-            x = x - 1
         pole[y][x] = "*"
-    elif command == "лв":
+    elif command == "лв" and x > 0:
         pole[y][x] = "O"
         x = x - 1
-        if x < 0 :
-            x = x + 1
         pole[y][x] = "*"
-    elif command == "вх":
+    elif command == "вх" and y > 0 :
         pole[y][x] = "O"
         y = y - 1
-        if y <0 :
-            y = y + 1
         pole[y][x] = "*"
-    elif command == "нз":
+    elif command == "нз" and y < len(pole) - 1:
         pole[y][x] = "O"
         y = y + 1
-        if y > 7 :
-            y = y - 1
         pole[y][x] = "*"
     else:
         print("Не понял...")
